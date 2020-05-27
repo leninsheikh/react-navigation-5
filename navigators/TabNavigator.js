@@ -2,10 +2,10 @@ import * as React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 
-import StackNavigator, { NotificationStackNavigator } from './StackNavigator';
+import StackNavigator, { NotificationStackNavigator, GroupStackNavigator } from './StackNavigator';
 import GroupsScreen from '../screens/GroupsScreen';
-import NotificationsScreen from '../screens/NotificationsScreen';
 import IconWithBadge from '../components/IconWithBadge';
+
 
 
 
@@ -45,7 +45,7 @@ export default function App() {
             <Tab.Screen name="Feeds" component={StackNavigator} options={{
                 tabBarIcon: ({ color, size }) => <Ionicons name='ios-home' size={size} color={color} />
             }} />
-            <Tab.Screen name="Groups" component={GroupsScreen} options={{
+            <Tab.Screen name="Groupss" component={GroupStackNavigator} options={{
                 tabBarIcon: ({ color, size }) => <Ionicons name='ios-contacts' size={size} color={color} />
             }} />
             <Tab.Screen
