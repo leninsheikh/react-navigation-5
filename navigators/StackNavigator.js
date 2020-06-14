@@ -7,12 +7,17 @@ import ProfileHeaderButton from '../components/header-buttons/ProfileHeaderButto
 import NotificationsScreen from '../screens/NotificationsScreen';
 import GroupsScreen from '../screens/GroupsScreen';
 import PaperAppbar from '../components/PaperAppbar';
+import NbAppbar from '../components/NbAppbar';
+import NbAppbarExtended from '../components/NbAppbarExtended';
+import GroupsDetailsScreen from '../screens/GroupsDetailsScreen';
+
+
 
 const Stack = createStackNavigator();
 
 const screenOptions = {
   headerStyle: {
-    backgroundColor: Platform.OS === "android" ? 'green' : '',
+    backgroundColor: Platform.OS === "android" ? 'green' : 'white',
   },
   headerTintColor: Platform.OS === "android" ? '#fff' : 'green',
   headerTitleStyle: {
@@ -27,7 +32,7 @@ const screenOptions = {
  */
 export default () => {
   return (
-    <Stack.Navigator  initialRouteName='Feeds' screenOptions={screenOptions}>
+    <Stack.Navigator initialRouteName='Feeds' screenOptions={screenOptions}>
       <Stack.Screen name="Feeds" component={FeedsScreen} options={{
         title: 'Feeds'
       }} />
@@ -64,16 +69,31 @@ export const NotificationStackNavigator = () => (
 const GroupStack = createStackNavigator();
 
 export const GroupStackNavigator = () => (
-  <NotificationStack.Navigator screenOptions={screenOptions}>
+  <NotificationStack.Navigator screenOptions={{
+    headerStyle: {
+      backgroundColor: Platform.OS === "android" ? 'green' : 'white',
+      headerStyle: { height: 95 }
+    },
+    headerTintColor: Platform.OS === "android" ? '#fff' : 'green',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+    }
+  }}>
     <NotificationStack.Screen name="Groups" component={GroupsScreen} options={{
       title: 'Groups',
-      headerStyle: {height: 95},
-      headerMode: 'screen',
-      header: customAppBar
+      // headerMode: 'screen',
+      header: () => null
+    }}>
+    </NotificationStack.Screen>
+    <NotificationStack.Screen name="GroupDetails" component={GroupsDetailsScreen} options={{
+      title: 'Groups Details',
+      headerMode: 'float',
+      header: () => null
     }}>
     </NotificationStack.Screen>
   </NotificationStack.Navigator>
 )
+
 
 const customAppBar = ({ scene, previous, navigation }) => {
   const { options } = scene.descriptor;
@@ -84,13 +104,15 @@ const customAppBar = ({ scene, previous, navigation }) => {
         ? options.title
         : scene.route.name;
 
-        console.log(options)
+  console.log(options.headerStyle)
   return (
-    <PaperAppbar
+    <NbAppbarExtended
       title={title}
-      leftButton={
-        previous ? <MyBackButton onPress={navigation.goBack} /> : undefined
-      }
+      // leftButton={
+      //   previous ? <MyBackButton onPress={navigation.goBack} /> : undefined
+      // }
+      previous={previous}
+      goBack={() => navigation.goBack()}
       style={options.headerStyle}
     />
   );

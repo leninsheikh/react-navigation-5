@@ -8,7 +8,7 @@ const MORE_ICON = Platform.OS === 'ios' ? 'dots-horizontal' : 'dots-vertical';
 
 const PaperAppbar = props => {
    return (
-      <Appbar.Header statusBarHeight={25} style={{  backgroundColor: 'red' }} dark={true}>
+      <Appbar.Header statusBarHeight={24} style={{  backgroundColor: 'red' }} dark={true}>
       {/* <Appbar.BackAction onPress={() => { }} /> */}
       <Appbar.Content title={props.title} subtitle={''} />
       <Appbar.Action icon="magnify" onPress={() => { }} />

@@ -41,11 +41,15 @@ const screenOptions = ({ route }) => ({
 
 export default function App() {
     return (
-        <Tab.Navigator tabBarOptions={tabBarOptions} screenOptions={screenOptions}>
+        <Tab.Navigator
+            tabBarOptions={tabBarOptions}
+            screenOptions={screenOptions}
+            // initialRouteName='Groups'
+        >
             <Tab.Screen name="Feeds" component={StackNavigator} options={{
                 tabBarIcon: ({ color, size }) => <Ionicons name='ios-home' size={size} color={color} />
             }} />
-            <Tab.Screen name="Groupss" component={GroupStackNavigator} options={{
+            <Tab.Screen name="Groups" component={GroupStackNavigator} options={{
                 tabBarIcon: ({ color, size }) => <Ionicons name='ios-contacts' size={size} color={color} />
             }} />
             <Tab.Screen
